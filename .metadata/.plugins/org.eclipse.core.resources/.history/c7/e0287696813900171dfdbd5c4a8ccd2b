@@ -1,0 +1,49 @@
+package com.juslin.highscore.dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.juslin.highscore.domain.Score;
+import com.juslin.highscore.tietokanta.Kysely;
+import com.juslin.highscore.tietokanta.Paivitys;
+import com.juslin.highscore.tietokanta.Yhteys;
+
+public class ScoresDao {
+	public ArrayList<Score> getScores(){
+		
+		ArrayList<Score> scores = new ArrayList<Score>();
+		Yhteys yhteys = new Yhteys();
+		Kysely kysely = new Kysely(yhteys.getYhteys());
+		kysely.suoritaYksittainenKysely("SELECT nickname, score FROM Scores ORDER BY score DESC LIMIT 5");
+		ArrayList tulokset = kysely.getTulosjoukko();
+		for (int i = 0; i < tulokset.size(); i++) {
+			HashMap<String, String> rivi = (HashMap<String, String>)tulokset.get(i);
+			System.out.println(rivi.get("nickname"));
+			System.out.println(rivi.get("score"));
+
+		}
+		
+		return scores;
+	}
+	public boolean addScore(Score score){
+		String nickname = score.getNickname();
+		int points = score.getAmount();
+		
+		
+		ArrayList<Score> scores = new ArrayList<Score>();
+		Yhteys yhteys = new Yhteys();
+		Kysely kysely = new Kysely(yhteys.getYhteys());
+		kysely.suoritaYksittainenKysely("SELECT nickname, score FROM Scores ORDER BY score DESC LIMIT 5");
+		ArrayList tulokset = kysely.getTulosjoukko();
+		for (int i = 0; i < tulokset.size(); i++) {
+			HashMap<String, String> rivi = (HashMap<String, String>)tulokset.get(i);
+			if(nickname.equals(rivi.get("nickname"))) {
+				Paivitys paivitys = new Paivitys(yhteys.getYhteys());
+				
+				
+			}
+
+
+		}
+	}
+}

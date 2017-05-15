@@ -1,7 +1,10 @@
 package com.juslin.highscore.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.juslin.highscore.dao.ScoresDao;
+import com.juslin.highscore.domain.Score;
 
 /**
  * Servlet implementation class ScoreListServlet
@@ -30,7 +34,14 @@ public class ScoreListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ScoresDao dao = new ScoresDao();
-		
+		ArrayList<Score> scores = new ArrayList<Score>();
+		scores = dao.getScores();
+		request.setAttribute("scores", scores);
+		PrintWriter out = response.getWriter();
+		for (int i = 0; i < scores.size(); i++) {
+			out.println(scores.get(i).getNickname() + " " + scores.get(i).getAmount() + "\n");
+		}
+		out.close();
 	}
 
 	/**
