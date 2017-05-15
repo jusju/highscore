@@ -1,0 +1,9 @@
+package com.juslin.highscore.dao;
+
+import java.util.ArrayList;
+
+public class PointDao {
+	private ArrayList<Score> getScores(){
+		
+	}
+}

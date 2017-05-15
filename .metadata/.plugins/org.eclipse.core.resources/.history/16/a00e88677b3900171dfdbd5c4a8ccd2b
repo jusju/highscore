@@ -1,0 +1,6 @@
+package com.juslin.highscore.domain;
+
+public class Score {
+	private int amount;
+	private String nickname;
+}

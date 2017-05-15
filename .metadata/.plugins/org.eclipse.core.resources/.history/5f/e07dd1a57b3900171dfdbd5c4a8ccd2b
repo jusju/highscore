@@ -1,0 +1,5 @@
+package com.juslin.highscore.dao;
+
+public class PointDao {
+
+}

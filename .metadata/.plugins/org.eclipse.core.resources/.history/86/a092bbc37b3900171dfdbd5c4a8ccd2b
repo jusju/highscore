@@ -1,0 +1,12 @@
+package com.juslin.highscore.dao;
+
+import java.util.ArrayList;
+
+import com.juslin.highscore.domain.Score;
+import com.juslin.highscore.tietokanta.Yhteys;
+
+public class PointDao {
+	private ArrayList<Score> getScores(){
+		Yhteys yhteys = new Yhteys();
+	}
+}
